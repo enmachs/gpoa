@@ -1,0 +1,82 @@
+#index-container{ :controller => "tasks" }
+  .container
+    .row
+      .listing.col-lg-12.col-xs-12
+        %section.content-header.index-header
+          %h1{ style: 'display: inline-block' }
+            = t("keppler.modules.#{controller_path.underscore}")
+          = entries(@total, @objects)
+          .toolbar
+            - if Pundit.policy(current_user, Task).download?
+              .toolbar-item
+                = link_to admin_task_download_path(Task, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
+                  %i.icon-cloud-download
+            - if Pundit.policy(current_user, Task).import?
+              .toolbar-item
+                = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "task" do
+                  %i.icon-cloud-upload
+            .toolbar-item
+              = link_to reload_admin_tasks_path, class: "tool-btn", remote: true do
+                %i.icon-reload
+            - if Pundit.policy(current_user, Task).destroy_multiple?
+              .toolbar-item
+                .checkbox
+                  %label{ for: 'checkbox-all' }
+                    %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
+                    %span.cr
+                      %i.cr-icon.glyphicon.glyphicon-ok
+            .toolbar-item
+              %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
+                %i.icon-trash
+          .hide
+            = form_tag admin_task_import_path(@objects), id: "import_form_tasks", multipart: true, method: :post do
+              = file_field_tag :file, id: "import_file_task"
+          %ol.breadcrumb
+            %li
+              %a{ href: '#' }
+                %i.icon-directions
+                = t("keppler.modules.#{action_name.underscore}")
+
+        .box.slice-box
+          .box-body.no-padding
+
+            %table.table
+              %thead
+                - if @objects.size.zero?
+                  %tr
+                    %th{style: 'text-align: center;'}
+                      %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.tasks"))
+                - else
+                  %tr
+                    %th
+                    %th.hidden-xs= t('activerecord.attributes.title')
+                    %th.hidden-xs.hidden-sm= t('activerecord.attributes.budget')
+                    %th.hidden-xs.hidden-sm= t('activerecord.attributes.objective')
+                    %th.center Menu
+                    %th
+              %tbody#objects-container{ "data-update-url" => "#{sort_admin_tasks_path}" }
+                = render 'admin/layouts/listing_preloader'
+                = render 'listing', objects: @tasks
+        %center#paginator-module
+          = paginate @objects, window: 1
+  %aside.control-sidebar
+    = render "description"
+  %aside#index-show.control-sidebar
+
+  .mixed-btn
+    - if Pundit.policy(current_user, Task).create?
+      = link_to new_admin_task_path, class: "btn-float" do
+        +
+
+:javascript
+  $(document).ready(function(){
+    $('#task').click(function() {
+      $('#import_file_task').click()
+      $('#import_file_task').change(function() {
+        $('.waiting').css('display', 'block')
+        $('#import_form_task').submit()
+      })
+    });
+
+    renderImg();
+  });
