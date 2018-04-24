@@ -23,6 +23,10 @@
                     = f.input :title
                   .col-xs-12
                     = f.input :description, input_html: {class: "materialize-textarea"}
+                  .col-xs-6
+                    = f.input :institution, input_html: {class: "materialize-textarea"}
+                  .col-xs-6
+                    = f.input :code
                   .col-xs-12
                     .pull-right
                       = f.button :submit, t("keppler.actions.save"), name: '_save', class: "btn-primary"

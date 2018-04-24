@@ -11,10 +11,10 @@
       = link_to admin_task_path(task, search: @query), remote: true, class: 'show-row' do
         %span
           = task.title
-    %td.hidden-xs.hidden-sm
-      = link_to admin_task_path(task, search: @query), remote: true, class: 'show-row' do
-        %span
-          = task.budget
+    -# %td.hidden-xs.hidden-sm
+    -#   = link_to admin_task_path(task, search: @query), remote: true, class: 'show-row' do
+    -#     %span
+    -#       = task.budget
     %td.hidden-xs.hidden-sm
       = link_to admin_task_path(task, search: @query), remote: true, class: 'show-row' do
         %span

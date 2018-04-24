@@ -36,7 +36,6 @@
               %a{ href: '#' }
                 %i.icon-directions
                 = t("keppler.modules.#{action_name.underscore}")
-
         .box.slice-box
           .box-body.no-padding
 
@@ -50,7 +49,7 @@
                   %tr
                     %th
                     %th.hidden-xs= t('activerecord.attributes.title')
-                    %th.hidden-xs.hidden-sm= t('activerecord.attributes.budget')
+                    -# %th.hidden-xs.hidden-sm= t('activerecord.attributes.budget')
                     %th.hidden-xs.hidden-sm= t('activerecord.attributes.objective')
                     %th.center Menu
                     %th

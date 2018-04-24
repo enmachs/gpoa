@@ -35,9 +35,10 @@ module Admin
     # POST /tasks
     def create
       @task = Task.new(task_params)
-
+      # byebug
       if @task.save
-        redirect(@task, params)
+        # redirect(@task, params)
+        redirect_to admin_operative_plan_objectives_path(@task.objective.operative_plan)
       else
         render :new
       end
@@ -124,7 +125,7 @@ module Admin
 
     # Only allow a trusted parameter "white list" through.
     def task_params
-      params.require(:task).permit(:title, :description, :budget, :objective_id)
+      params.require(:task).permit(:title, :description, :objective_id)
     end
 
     def show_history

@@ -25,11 +25,15 @@
             = link_to edit_admin_operative_plan_path(operative_plan), class: 'new-menu', title: t('keppler.actions.edit') do
               %i.icon-pencil
               = t('keppler.actions.edit')
-        - if Pundit.policy(current_user, OperativePlan).clone?
-          %li
-            = link_to admin_operative_plan_clone_path(operative_plan), class: 'new-menu', title: t('keppler.actions.clone') do
-              %i.icon-docs
-              = t('keppler.actions.clone')
+        %li
+          = link_to admin_operative_plan_objectives_path(operative_plan), class: 'new-menu', title: 'Objectivos' do
+            %i.icon-layers
+            Objetivos
+        -# - if Pundit.policy(current_user, OperativePlan).clone?
+        -#   %li
+        -#     = link_to admin_operative_plan_clone_path(operative_plan), class: 'new-menu', title: t('keppler.actions.clone') do
+        -#       %i.icon-docs
+        -#       = t('keppler.actions.clone')
         - if Pundit.policy(current_user, OperativePlan).destroy?
           %li
             = link_to admin_operative_plan_path(operative_plan), class: 'new-menu', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do

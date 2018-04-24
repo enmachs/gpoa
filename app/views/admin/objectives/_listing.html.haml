@@ -1,4 +1,4 @@
-- objects.each do |objective|
+- objects.reverse.each do |objective|
   %tr{ id: "row-#{objective.id}" }
     %td.item-check{ style: 'width: 10%' }
       - if Pundit.policy(current_user, Objective).destroy_multiple?
@@ -8,35 +8,38 @@
             %span.cr
               %i.cr-icon.glyphicon.glyphicon-ok
     %td.hidden-xs
-      = link_to admin_objective_path(objective, search: @query), remote: true, class: 'show-row' do
+      = link_to admin_operative_plan_objective_path(@operative_plan, objective, search: @query), remote: true, class: 'show-row' do
         %span
           = objective.title
     %td.hidden-xs.hidden-sm
-      = link_to admin_objective_path(objective, search: @query), remote: true, class: 'show-row' do
+      = link_to admin_operative_plan_objective_path(@operative_plan, objective, search: @query), remote: true, class: 'show-row' do
         %span
-          = objective.operative_plan
+          = objective.operative_plan.title
     %td{ style: 'width: 15px;padding-right:15px;' }
       %a.action-btn.pull-right{:id => "menu-#{objective.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
         %i.icon-options-vertical
       %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{objective.id}" }
         - if Pundit.policy(current_user, Objective).show?
           %li
-            = link_to admin_objective_path(objective), class: 'new-menu', title: t('keppler.actions.show') do
+            = link_to admin_operative_plan_objective_path(@operative_plan, objective), class: 'new-menu', title: t('keppler.actions.show') do
               %i.icon-eye
               = t('keppler.actions.show')
         - if Pundit.policy(current_user, Objective).update?
           %li
-            = link_to edit_admin_objective_path(objective), class: 'new-menu', title: t('keppler.actions.edit') do
+            = link_to edit_admin_operative_plan_objective_path(@operative_plan, objective), class: 'new-menu', title: t('keppler.actions.edit') do
               %i.icon-pencil
               = t('keppler.actions.edit')
-        - if Pundit.policy(current_user, Objective).clone?
-          %li
-            = link_to admin_objective_clone_path(objective), class: 'new-menu', title: t('keppler.actions.clone') do
-              %i.icon-docs
-              = t('keppler.actions.clone')
+        %li
+          = link_to admin_operative_plan_objective_show_tasks_path(@operative_plan, objective), class: 'new-menu', title: 'Ver actividades', remote: true do
+            %i.icon-layers
+            Ver actividades
+        %li
+          = link_to admin_operative_plan_objective_new_task_path(@operative_plan, objective), class: 'new-menu', title: 'Crear actividades', remote: true do
+            %i.icon-layers
+            Crear actividad
         - if Pundit.policy(current_user, Objective).destroy?
           %li
-            = link_to admin_objective_path(objective), class: 'new-menu', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+            = link_to admin_operative_plan_objective_path(@operative_plan, objective), class: 'new-menu', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
               %i.icon-trash
               = t('keppler.actions.delete')
 

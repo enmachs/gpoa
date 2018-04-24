@@ -124,7 +124,8 @@ module Admin
 
     # Only allow a trusted parameter "white list" through.
     def operative_plan_params
-      params.require(:operative_plan).permit(:title, :description)
+      params.require(:operative_plan).permit(:title, :description, 
+                                             :institution, :code)
     end
 
     def show_history

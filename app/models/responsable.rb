@@ -4,6 +4,10 @@ class Responsable < ActiveRecord::Base
   include CloneRecord
   require 'csv'
   acts_as_list
+
+  belongs_to :operative_plan
+  has_and_belongs_to_many :responsables
+
   # Fields for the search form in the navbar
   def self.search_field
     fields = ["name", "email", "age"]

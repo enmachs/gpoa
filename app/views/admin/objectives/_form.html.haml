@@ -1,8 +1,8 @@
-= simple_form_for [:admin, @objective] do |f|
+= simple_form_for [:admin, @operative_plan, @objective] do |f|
   .container
     .row
       .col-lg-2
-        = link_to admin_objectives_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+        = link_to admin_operative_plan_objectives_path(@operative_plan), class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
           .arrow-back.btn.btn-default
             %i.fa.fa-angle-left
             = t('keppler.actions.back')

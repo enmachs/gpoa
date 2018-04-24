@@ -4,6 +4,7 @@ module Admin
     before_action :set_objective, only: [:show, :edit, :update, :destroy]
     before_action :show_history, only: [:index]
     before_action :set_attachments
+    before_action :set_poa
 
     # GET /objectives
     def index
@@ -37,7 +38,8 @@ module Admin
       @objective = Objective.new(objective_params)
 
       if @objective.save
-        redirect(@objective, params)
+        # redirect(@objective, params)
+        redirect_to admin_operative_plan_objectives_path(@operative_plan)
       else
         render :new
       end
@@ -67,7 +69,7 @@ module Admin
     # DELETE /objectives/1
     def destroy
       @objective.destroy
-      redirect_to admin_objectives_path, notice: actions_messages(@objective)
+      redirect_to admin_operative_plan_objectives_path(@operative_plan), notice: actions_messages(@objective)
       authorize @objective
     end
 
@@ -110,7 +112,32 @@ module Admin
       render :index
     end
 
+    def obj_tasks
+      @objects = Objective.find(params[:objective_id]).tasks
+      # byebug
+    end
+
+    def new_task
+      @task = Task.new
+      # byebug
+      @objective = Objective.find(params[:objective_id])
+    end
+
+    def create_task
+      # byebug
+      @task = Task.new(Admin::TasksController.task_params)
+      @task.save!
+    end
+
     private
+
+    # def task_params
+    #   params.require(:task).permit(:title, :description, :objective_id)
+    # end
+
+    def set_poa
+      @operative_plan = OperativePlan.find(params[:operative_plan_id])
+    end
 
     def set_attachments
       @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image',

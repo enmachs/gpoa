@@ -3,7 +3,6 @@ class CreateTasks < ActiveRecord::Migration
     create_table :tasks do |t|
       t.string :title
       t.text :description
-      t.float :budget
       t.references :objective, index: true
 
       t.integer :position

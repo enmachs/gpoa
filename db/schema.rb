@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180420144139) do
+ActiveRecord::Schema.define(version: 20180424152552) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20180420144139) do
     t.string   "title",             limit: 255
     t.text     "description",       limit: 65535
     t.integer  "operative_plan_id", limit: 4
+    t.float    "budget",            limit: 24
     t.integer  "position",          limit: 4
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
@@ -78,19 +79,32 @@ ActiveRecord::Schema.define(version: 20180420144139) do
   create_table "operative_plans", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
+    t.text     "institution", limit: 65535
+    t.string   "code",        limit: 255
     t.integer  "position",    limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
 
   create_table "responsables", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "email",      limit: 255
-    t.integer  "age",        limit: 4
-    t.integer  "position",   limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",              limit: 255
+    t.string   "email",             limit: 255
+    t.integer  "age",               limit: 4
+    t.integer  "operative_plan_id", limit: 4
+    t.integer  "position",          limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
+
+  add_index "responsables", ["operative_plan_id"], name: "index_responsables_on_operative_plan_id", using: :btree
+
+  create_table "responsables_tasks", id: false, force: :cascade do |t|
+    t.integer "task_id",        limit: 4
+    t.integer "responsable_id", limit: 4
+  end
+
+  add_index "responsables_tasks", ["responsable_id"], name: "index_responsables_tasks_on_responsable_id", using: :btree
+  add_index "responsables_tasks", ["task_id"], name: "index_responsables_tasks_on_task_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",          limit: 255
@@ -166,7 +180,6 @@ ActiveRecord::Schema.define(version: 20180420144139) do
   create_table "tasks", force: :cascade do |t|
     t.string   "title",        limit: 255
     t.text     "description",  limit: 65535
-    t.float    "budget",       limit: 24
     t.integer  "objective_id", limit: 4
     t.integer  "position",     limit: 4
     t.datetime "created_at",                 null: false
@@ -206,5 +219,7 @@ ActiveRecord::Schema.define(version: 20180420144139) do
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
   add_foreign_key "objectives", "operative_plans"
+  add_foreign_key "responsables_tasks", "responsables"
+  add_foreign_key "responsables_tasks", "tasks"
   add_foreign_key "tasks", "objectives"
 end

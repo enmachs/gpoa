@@ -4,7 +4,7 @@ class CreateObjectives < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.references :operative_plan, index: true
-
+      t.float :budget
       t.integer :position
       t.timestamps null: false
     end

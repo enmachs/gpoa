@@ -56,36 +56,11 @@ Rails.application.routes.draw do
         as: :destroy_multiple
       )
     end
- 
-    resources :objectives do
-      get '(page/:page)', action: :index, on: :collection, as: ''
-      get '/clone', action: 'clone'
-      post '/import', action: 'import', as: :import
-    
-      get '/download', action: 'download', as: :download
-      post(
-        '/sort',
-        action: :sort,
-        on: :collection,
-      )
-      get(
-        '/reload',
-        action: :reload,
-        on: :collection,
-      )
-      delete(
-        '/destroy_multiple',
-        action: :destroy_multiple,
-        on: :collection,
-        as: :destroy_multiple
-      )
-    end
- 
+
     resources :operative_plans do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
       post '/import', action: 'import', as: :import
-    
       get '/download', action: 'download', as: :download
       post(
         '/sort',
@@ -103,6 +78,31 @@ Rails.application.routes.draw do
         on: :collection,
         as: :destroy_multiple
       )
+      resources :objectives do
+        get '/new_task', to: 'objectives#new_task'
+        get '/show_tasks', to: 'objectives#obj_tasks'
+        post '/create_task', to: 'objetives#create_task'
+        get '(page/:page)', action: :index, on: :collection, as: ''
+        get '/clone', action: 'clone'
+        post '/import', action: 'import', as: :import
+        get '/download', action: 'download', as: :download
+        post(
+          '/sort',
+          action: :sort,
+          on: :collection,
+        )
+        get(
+          '/reload',
+          action: :reload,
+          on: :collection,
+        )
+        delete(
+          '/destroy_multiple',
+          action: :destroy_multiple,
+          on: :collection,
+          as: :destroy_multiple
+        )
+      end
     end
 
     resources :customizes do

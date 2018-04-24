@@ -3,6 +3,12 @@ class OperativePlan < ActiveRecord::Base
   include ActivityHistory
   include CloneRecord
   require 'csv'
+
+
+  # Relations
+  has_many :objectives
+  has_many :responsables
+
   acts_as_list
   # Fields for the search form in the navbar
   def self.search_field
