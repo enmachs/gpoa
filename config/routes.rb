@@ -8,12 +8,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'admin#root'
- 
+
     resources :responsables do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
       post '/import', action: 'import', as: :import
-    
+
       get '/download', action: 'download', as: :download
       post(
         '/sort',
@@ -32,12 +32,12 @@ Rails.application.routes.draw do
         as: :destroy_multiple
       )
     end
- 
+
     resources :tasks do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
       post '/import', action: 'import', as: :import
-    
+
       get '/download', action: 'download', as: :download
       post(
         '/sort',
@@ -62,6 +62,7 @@ Rails.application.routes.draw do
       get '/clone', action: 'clone'
       post '/import', action: 'import', as: :import
       get '/download', action: 'download', as: :download
+      get '/poa', action: 'poa', as: :poa
       post(
         '/sort',
         action: :sort,

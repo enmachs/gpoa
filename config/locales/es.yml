@@ -7,7 +7,7 @@ es:
     sidebar-menu:
       responsables: Responsables
       tasks: Tasks
-      objectives: Objectives
+      objectives: Metas
       operative_plans: Operative plans
       customizes: Personalización
       dashboard: Tablero
@@ -41,7 +41,7 @@ es:
       singularize:
         responsable: responsable
         task: task
-        objective: objective
+        objective: meta
         operative_plan: operative plan
         customize: customize
         meta_tag: meta tag
@@ -52,7 +52,7 @@ es:
       pluralize:
         responsables: responsables
         tasks: tasks
-        objectives: objectives
+        objectives: metas
         operative_plans: operative plans
         customizes: customizes
         meta_tags: meta tags
@@ -64,7 +64,7 @@ es:
     modules:
       admin/responsables: Responsables
       admin/tasks: Tasks
-      admin/objectives: Objectives
+      admin/objectives: Metas
       admin/operative_plans: Operative plans
       admin/customizes: Customizes
       admin/meta_tags: 'Meta tags'

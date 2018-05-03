@@ -65,13 +65,18 @@ ActiveRecord::Schema.define(version: 20180424152552) do
   end
 
   create_table "objectives", force: :cascade do |t|
-    t.string   "title",             limit: 255
-    t.text     "description",       limit: 65535
-    t.integer  "operative_plan_id", limit: 4
-    t.float    "budget",            limit: 24
-    t.integer  "position",          limit: 4
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.integer  "operative_plan_id",   limit: 4
+    t.string   "title",               limit: 255
+    t.string   "municipio",           limit: 255
+    t.float    "budget",              limit: 24
+    t.string   "budget_clasificador", limit: 255
+    t.string   "product",             limit: 255
+    t.string   "trimestre",           limit: 255
+    t.string   "cantidad",            limit: 255
+    t.text     "description",         limit: 65535
+    t.integer  "position",            limit: 4
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   add_index "objectives", ["operative_plan_id"], name: "index_objectives_on_operative_plan_id", using: :btree

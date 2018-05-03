@@ -28,7 +28,11 @@
         %li
           = link_to admin_operative_plan_objectives_path(operative_plan), class: 'new-menu', title: 'Objectivos' do
             %i.icon-layers
-            Objetivos
+            Metas
+        %li
+          = link_to admin_operative_plan_poa_path(operative_plan), class: 'new-menu', title: 'Objectivos' do
+            %i.icon-layers
+            Ver POA
         -# - if Pundit.policy(current_user, OperativePlan).clone?
         -#   %li
         -#     = link_to admin_operative_plan_clone_path(operative_plan), class: 'new-menu', title: t('keppler.actions.clone') do

@@ -21,6 +21,10 @@ module Admin
     def show
     end
 
+    def poa
+      @plan = OperativePlan.find params[:operative_plan_id]
+    end
+
     # GET /operative_plans/new
     def new
       @operative_plan = OperativePlan.new
@@ -124,7 +128,7 @@ module Admin
 
     # Only allow a trusted parameter "white list" through.
     def operative_plan_params
-      params.require(:operative_plan).permit(:title, :description, 
+      params.require(:operative_plan).permit(:title, :description,
                                              :institution, :code)
     end
 

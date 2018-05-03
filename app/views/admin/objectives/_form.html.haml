@@ -20,11 +20,24 @@
               %tbody
                 .form-padding
                   .col-xs-12
+                    = f.association :operative_plan
+                  .col-xs-12
                     = f.input :title
                   .col-xs-12
-                    = f.input :description, input_html: {class: "materialize-textarea"}
+                    = f.input :municipio
                   .col-xs-12
-                    = f.association :operative_plan
+                    = f.input :budget
+                  .col-xs-12
+                    = f.input :budget_clasificador
+                  .col-xs-12
+                    = f.input :product
+                  .col-xs-12
+                    = f.input :trimestre
+                  .col-xs-12
+                    = f.input :cantidad
+                  -# .col-xs-12
+                  -#   = f.input :description, input_html: {class: "materialize-textarea"}
+
                   .col-xs-12
                     .pull-right
                       = f.button :submit, t("keppler.actions.save"), name: '_save', class: "btn-primary"

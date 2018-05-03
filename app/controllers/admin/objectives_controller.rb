@@ -151,7 +151,9 @@ module Admin
 
     # Only allow a trusted parameter "white list" through.
     def objective_params
-      params.require(:objective).permit(:title, :description, :operative_plan_id)
+      params.require(:objective).permit(:title, :description, :operative_plan_id,
+                                        :municipio, :budget, :budget_clasificador,
+                                        :product, :trimestre, :cantidad  )
     end
 
     def show_history

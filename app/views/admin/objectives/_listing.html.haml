@@ -30,13 +30,13 @@
               %i.icon-pencil
               = t('keppler.actions.edit')
         %li
-          = link_to admin_operative_plan_objective_show_tasks_path(@operative_plan, objective), class: 'new-menu', title: 'Ver actividades', remote: true do
+          = link_to admin_operative_plan_objective_show_tasks_path(@operative_plan, objective), class: 'new-menu', title: 'Ver metas', remote: true do
             %i.icon-layers
-            Ver actividades
+            Ver metas
         %li
-          = link_to admin_operative_plan_objective_new_task_path(@operative_plan, objective), class: 'new-menu', title: 'Crear actividades', remote: true do
+          = link_to admin_operative_plan_objective_new_task_path(@operative_plan, objective), class: 'new-menu', title: 'Crear metas', remote: true do
             %i.icon-layers
-            Crear actividad
+            Crear acción
         - if Pundit.policy(current_user, Objective).destroy?
           %li
             = link_to admin_operative_plan_objective_path(@operative_plan, objective), class: 'new-menu', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
