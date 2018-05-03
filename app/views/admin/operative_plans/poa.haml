@@ -1,88 +1,143 @@
 #index-container{ :controller => "operative_plans" }
-  .container
-    .row
+	.container
+		.row
 
-      .listing.col-lg-12.col-xs-12
-        %section.content-header.index-header
-          %h1{ style: 'display: inline-block' }
-            = t("keppler.modules.#{controller_path.underscore}")
-          .toolbar
-            - if Pundit.policy(current_user, OperativePlan).download?
-              .toolbar-item
-                = link_to admin_operative_plan_download_path(OperativePlan, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
-                  %i.icon-cloud-download
-            - if Pundit.policy(current_user, OperativePlan).import?
-              .toolbar-item
-                = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "operative_plan" do
-                  %i.icon-cloud-upload
-            .toolbar-item
-              = link_to reload_admin_operative_plans_path, class: "tool-btn", remote: true do
-                %i.icon-reload
-            - if Pundit.policy(current_user, OperativePlan).destroy_multiple?
-              .toolbar-item
-                .checkbox
-                  %label{ for: 'checkbox-all' }
-                    %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
-                    %span.cr
-                      %i.cr-icon.glyphicon.glyphicon-ok
-            .toolbar-item
-              %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
-                %i.icon-trash
-          %ol.breadcrumb
-            %li
-              %a{ href: '#' }
-                %i.icon-directions
-                = t("keppler.modules.#{action_name.underscore}")
+			.listing.col-lg-12.col-xs-12
+				%section.content-header.index-header
+					%h1{ style: 'display: inline-block' }
+						= t("keppler.modules.#{controller_path.underscore}")
+					.toolbar
+						- if Pundit.policy(current_user, OperativePlan).download?
+							.toolbar-item
+								= link_to admin_operative_plan_download_path(OperativePlan, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
+									%i.icon-cloud-download
+						- if Pundit.policy(current_user, OperativePlan).import?
+							.toolbar-item
+								= link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "operative_plan" do
+									%i.icon-cloud-upload
+						.toolbar-item
+							= link_to reload_admin_operative_plans_path, class: "tool-btn", remote: true do
+								%i.icon-reload
+						- if Pundit.policy(current_user, OperativePlan).destroy_multiple?
+							.toolbar-item
+								.checkbox
+									%label{ for: 'checkbox-all' }
+										%input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
+										%span.cr
+											%i.cr-icon.glyphicon.glyphicon-ok
+						.toolbar-item
+							%a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
+								%i.icon-trash
+					%ol.breadcrumb
+						%li
+							%a{ href: '#' }
+								%i.icon-directions
+								= t("keppler.modules.#{action_name.underscore}")
 
-        .box.slice-box
-          %table.table
-            %h4.box-title.text-center PLAN OPERATIVO ANUAL
+				.box.slice-box
+					%table.table
+						%h4.box-title.text-center PLAN OPERATIVO ANUAL
 
-            %tbody
-              %tr
-                %th{:scope => "row"} Titulo
-                %td= @plan.title
-              %tr
-                %th{:scope => "row"} Institución
-                %td= @plan.institution
-              %tr
-                %th{:scope => "row"} Code
-                %td= @plan.code
-              %tr
-                %th{:scope => "row"} Descripción
-                %td= @plan.description
+						%tbody
+							%tr
+								%th{:scope => "row"} Titulo
+								%td= @plan.title
+							%tr
+								%th{:scope => "row"} Institución
+								%td= @plan.institution
+							%tr
+								%th{:scope => "row"} Code
+								%td= @plan.code
+							%tr
+								%th{:scope => "row"} Descripción
+								%td= @plan.description
 
-        .box.slice-box
-          %table.table
-            %thead
-              %tr
-                %th.text-center{:scope => "col"} #
-                %th.text-center{:scope => "col"} Meta
-                %th.text-center{:scope => "col"} Acciones a ejecutar
-                %th.text-center{:scope => "col"} Municipio
-                %th.text-center{:scope => "col"} Costo a ejecutar
-                %th.text-center{:scope => "col"} Categoría presupuesta
-                %th.text-center{:scope => "col"} Producto a generar
-                %th.text-center{:scope => "col"} I Trim
-                %th.text-center{:scope => "col"} II Trim
-                %th.text-center{:scope => "col"} III Trim
-                %th.text-center{:scope => "col"} IV Trim
-            %tbody
-              - @plan.objectives.each_with_index do |meta, i|
-                %tr
-                  %th{:scope => "row"} 1
-                  %td= meta.title
-                  %td.text-center= meta.tasks.count
-                  %td.text-center= meta.municipio
-                  %td.text-center= meta.budget
-                  %td.text-center= meta.budget_clasificador
-                  %td.text-center= meta.product
-                  - 4.times do |i|
-                    %td.text-center= 'x' if (i+1).eql?(meta.trimestre.to_i)
+				.box.slice-box
+					%table.table
+						%thead
+							%tr
+								%th.text-center{:scope => "col"} #
+								%th.text-center{:scope => "col"} Meta
+								%th.text-center{:scope => "col"} Acciones a ejecutar
+								%th.text-center{:scope => "col"} Municipio
+								%th.text-center{:scope => "col"} Costo a ejecutar
+								%th.text-center{:scope => "col"} Categoría presupuesta
+								%th.text-center{:scope => "col"} Producto a generar
+								%th.text-center{:scope => "col"} I Trim
+								%th.text-center{:scope => "col"} II Trim
+								%th.text-center{:scope => "col"} III Trim
+								%th.text-center{:scope => "col"} IV Trim
+						%tbody
+							- @plan.objectives.each_with_index do |meta, i|
+								%tr
+									%th{:scope => "row"} 1
+									%td= meta.title
+									%td.text-center= meta.tasks.count
+									%td.text-center= meta.municipio
+									%td.text-center= meta.budget
+									%td.text-center= meta.budget_clasificador
+									%td.text-center= meta.product
+									- 4.times do |i|
+										%td.text-center= 'x' if (i+1).eql?(meta.trimestre.to_i)
 
-  %aside#index-show.control-sidebar
+		.row
+			.col-lg-12
+				.box.slice-box
+					.box-header.with-border
+						%h3.box-title
+							Información
+					.box-body.pure-input
+						.dashboard-head
+							-# .form-group
+							-# 	%select.form-control
+							-# 		%option Opción 1
+							.row
+								.col-lg-12.separator-dash
+									.col-lg-6
+										#view-name.hide-on-small-only
+									.col-lg-6
+										#active-users-container
+								.col-lg-12
+									#view-selector-container.hide-on-small-only
+		.row
+			.col-lg-6
+				.box.slice-box
+					.box-header.with-border
+						%h3.box-title
+							Uso por semana
+						-# .box-tools.pull-right
+						-# 	%a.btn.btn-box-tool{"data-widget" => "collapse", type: "button"}
+						-# 		%i.fa.fa-minus
+					.box-body.pure-input
+						= line_chart @data, @options
 
-  .mixed-btn
-    - if Pundit.policy(current_user, OperativePlan).create?
-      = link_to new_admin_operative_plan_path, class: "btn-float" do
-        +
+			.col-lg-6
+				.box.slice-box
+					.box-header.with-border
+						%h3.box-title
+							Uso al mes
+					.box-body.pure-input
+						= bar_chart @data2, @options2
+		.row
+			.col-lg-6.m6.l6
+				.box.slice-box
+					.box-header.with-border
+						%h3.box-title
+							Usuarios por navegador
+					.box-body.pure-input
+						= radar_chart @data3, @options3
+
+			.col-lg-6.m6.l6
+				.box.slice-box
+					.box-header.with-border
+						%h3.box-title
+							Usuarios por países
+					.box-body.pure-input
+						= polar_area_chart @data4, @options4
+
+	%aside#index-show.control-sidebar
+
+	.mixed-btn
+		- if Pundit.policy(current_user, OperativePlan).create?
+			= link_to new_admin_operative_plan_path, class: "btn-float" do
+				+

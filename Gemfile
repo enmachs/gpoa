@@ -26,6 +26,9 @@ gem 'to_xls-rails'
 gem 'jquery-ui-rails'
 gem 'acts_as_list', '~> 0.9.10'
 
+#Chartjs
+gem 'chartjs-ror'
+
 # Database
 gem 'mysql2', '~> 0.3.18'
 

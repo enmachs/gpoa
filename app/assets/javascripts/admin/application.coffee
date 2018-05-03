@@ -12,4 +12,5 @@
 #= require jquery.minicolors
 #= require vue
 #= require jquery.remotipart
+#= require Chart.bundle.min
 #= require_tree .
