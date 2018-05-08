@@ -116,26 +116,26 @@
 				.box.slice-box
 					.box-header.with-border
 						%h3.box-title
-							Uso por semana
+							Gráfico de líneas
 						-# .box-tools.pull-right
 						-# 	%a.btn.btn-box-tool{"data-widget" => "collapse", type: "button"}
 						-# 		%i.fa.fa-minus
 					.box-body.pure-input
-						= line_chart @data, @options
+						= line_chart Chart.data_line(@plan), Chart.option_line(@plan)
 
 			.col-lg-6
 				.box.slice-box
 					.box-header.with-border
 						%h3.box-title
-							Uso al mes
+							Gráfico de barras
 					.box-body.pure-input
-						= bar_chart @data2, @options2
+						= bar_chart Chart.data_bar(@plan), Chart.option_bar(@plan)
 		.row
 			.col-lg-6.m6.l6
 				.box.slice-box
 					.box-header.with-border
 						%h3.box-title
-							Usuarios por navegador
+							Gráfico Radar
 					.box-body.pure-input
 						= radar_chart @data3, @options3
 
@@ -143,7 +143,7 @@
 				.box.slice-box
 					.box-header.with-border
 						%h3.box-title
-							Usuarios por países
+							Gráfico Polar
 					.box-body.pure-input
 						= polar_area_chart @data4, @options4
 
