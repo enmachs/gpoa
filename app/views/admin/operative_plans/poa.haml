@@ -40,17 +40,29 @@
 
 						%tbody
 							%tr
-								%th{:scope => "row"} Titulo
-								%td= @plan.title
+								%th{:scope => "row"} Actor Responsable
+								%td= @plan.responsible_actor
 							%tr
-								%th{:scope => "row"} Institución
-								%td= @plan.institution
+								%th{:scope => "row"} Plan Nacional
+								%td= @plan.national_plan
 							%tr
-								%th{:scope => "row"} Code
-								%td= @plan.code
+								%th{:scope => "row"} Plan Estatal
+								%td= @plan.state_plan
 							%tr
-								%th{:scope => "row"} Descripción
-								%td= @plan.description
+								%th{:scope => "row"} Sector
+								%td= @plan.district
+							%tr
+								%th{:scope => "row"} Programa
+								%td= @plan.program
+							%tr
+								%th{:scope => "row"} Subprograma
+								%td= @plan.subprogram
+							%tr
+								%th{:scope => "row"} Proyecto
+								%td= @plan.project
+							%tr
+								%th{:scope => "row"} Objetivo
+								%td= @plan.objective
 
 				.box.slice-box
 					%table.table

@@ -22,7 +22,7 @@
           .box-body.box-body-no-padding
             %table.table.table-striped
               %tbody
-                - @operative_plan.as_json(only: ["title", "description", "institution", "code"]).each do |attribute, value|
+                - @operative_plan.as_json(only: ["responsible_actor", "national_plan", "state_plan", "objective"]).each do |attribute, value|
                   %tr.list-row
                     %th.display-label= t("activerecord.attributes.#{attribute}")
                     %td.display-value.fs-body-1.tc-black-2

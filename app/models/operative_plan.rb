@@ -12,7 +12,7 @@ class OperativePlan < ActiveRecord::Base
   acts_as_list
   # Fields for the search form in the navbar
   def self.search_field
-    fields = ["title", "description"]
+    fields = ["objective", "responsible_actor"]
     build_query(fields, :or, :cont)
   end
 

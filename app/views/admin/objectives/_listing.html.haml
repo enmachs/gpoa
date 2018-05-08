@@ -14,7 +14,7 @@
     %td.hidden-xs.hidden-sm
       = link_to admin_operative_plan_objective_path(@operative_plan, objective, search: @query), remote: true, class: 'show-row' do
         %span
-          = objective.operative_plan.title
+          = objective.operative_plan.district
     %td{ style: 'width: 15px;padding-right:15px;' }
       %a.action-btn.pull-right{:id => "menu-#{objective.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
         %i.icon-options-vertical
@@ -30,9 +30,9 @@
               %i.icon-pencil
               = t('keppler.actions.edit')
         %li
-          = link_to admin_operative_plan_objective_show_tasks_path(@operative_plan, objective), class: 'new-menu', title: 'Ver metas', remote: true do
+          = link_to admin_operative_plan_objective_show_tasks_path(@operative_plan, objective), class: 'new-menu', title: 'Ver acción', remote: true do
             %i.icon-layers
-            Ver metas
+            Ver acción
         %li
           = link_to admin_operative_plan_objective_new_task_path(@operative_plan, objective), class: 'new-menu', title: 'Crear metas', remote: true do
             %i.icon-layers

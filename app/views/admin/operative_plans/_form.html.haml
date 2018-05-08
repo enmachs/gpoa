@@ -20,13 +20,22 @@
               %tbody
                 .form-padding
                   .col-xs-12
-                    = f.input :title
+                    = f.input :responsible_actor, label: 'Actor Responsable', input_html: {class: "materialize-textarea"}
                   .col-xs-12
-                    = f.input :description, input_html: {class: "materialize-textarea"}
+                    = f.input :national_plan, label: 'Plan Nacional', input_html: {class: "materialize-textarea"}
+                  .col-xs-12
+                    = f.input :state_plan, label: 'Plan Estatal', input_html: {class: "materialize-textarea"}
                   .col-xs-6
-                    = f.input :institution, input_html: {class: "materialize-textarea"}
+                    = f.input :district, label: 'Sector'
                   .col-xs-6
-                    = f.input :code
+                    = f.input :project, label: 'Proyecto'
+                  .col-xs-6
+                    = f.input :program, label: 'Programa'
+                  .col-xs-6
+                    = f.input :subprogram, label: 'Subprograma'
+                  .col-xs-12
+                    = f.input :objective, label: 'Objetivo', input_html: {class: "materialize-textarea"}
+
                   .col-xs-12
                     .pull-right
                       = f.button :submit, t("keppler.actions.save"), name: '_save', class: "btn-primary"

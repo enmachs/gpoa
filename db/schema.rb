@@ -70,9 +70,9 @@ ActiveRecord::Schema.define(version: 20180424152552) do
     t.string   "municipio",           limit: 255
     t.float    "budget",              limit: 24
     t.string   "budget_clasificador", limit: 255
+    t.string   "cantidad",            limit: 255
     t.string   "product",             limit: 255
     t.string   "trimestre",           limit: 255
-    t.string   "cantidad",            limit: 255
     t.text     "description",         limit: 65535
     t.integer  "position",            limit: 4
     t.datetime "created_at",                        null: false
@@ -82,13 +82,17 @@ ActiveRecord::Schema.define(version: 20180424152552) do
   add_index "objectives", ["operative_plan_id"], name: "index_objectives_on_operative_plan_id", using: :btree
 
   create_table "operative_plans", force: :cascade do |t|
-    t.string   "title",       limit: 255
-    t.text     "description", limit: 65535
-    t.text     "institution", limit: 65535
-    t.string   "code",        limit: 255
-    t.integer  "position",    limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "responsible_actor", limit: 255
+    t.text     "national_plan",     limit: 65535
+    t.text     "state_plan",        limit: 65535
+    t.string   "district",          limit: 255
+    t.string   "program",           limit: 255
+    t.string   "subprogram",        limit: 255
+    t.string   "project",           limit: 255
+    t.text     "objective",         limit: 65535
+    t.integer  "position",          limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "responsables", force: :cascade do |t|

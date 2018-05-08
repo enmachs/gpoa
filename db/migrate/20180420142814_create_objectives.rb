@@ -6,9 +6,9 @@ class CreateObjectives < ActiveRecord::Migration
       t.string      :municipio
       t.float       :budget
       t.string      :budget_clasificador
+      t.string      :cantidad
       t.string      :product
       t.string      :trimestre
-      t.string      :cantidad
       t.text        :description
       t.string
       t.integer     :position
