@@ -10,6 +10,7 @@ class OperativePlan < ActiveRecord::Base
   has_many :responsables
 
   acts_as_list
+
   # Fields for the search form in the navbar
   def self.search_field
     fields = ["objective", "responsible_actor"]

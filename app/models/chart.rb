@@ -1,31 +1,24 @@
 class Chart
 
   def self.data_bar(plan)
-    data_budget = plan.objectives.collect {|x| x.try(:budget)}
-    @data2={
-      labels: ['Ene', 'Feb', 'Marz', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dec'],
-      datasets: [{
-          label: 'Objetivo 1',
-          backgroundColor: 'rgba(245, 14, 30, 0.2)',
-          borderColor: [
-              'rgba(255,99,132,1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'
-          ],
-          fill: true,
-          data: data_budget
-      }, {
-          label: 'Objetivo 2',
-          fill: true,
-          backgroundColor:'rgba(33, 150, 243, 0.29)',
-          borderColor: '#2196f3',
-          data: data_budget
-      }]
 
+    datasets = []
+    plan.objectives.each_with_index do |obj, i|
+      presupuesto = obj.array_presupuesto.gsub(/[\[\]]/, '').split(',').map!(&:to_f)
+      datasets.push( {
+        label: "Objetivo ##{i+1}",
+        backgroundColor: 'rgba(245, 14, 30, 0.2)',
+        borderColor: 'rgba(255,99,132,1)',
+        fill: true,
+        data: presupuesto
+      })
+    end
+
+    @data = {
+      labels: ['Ene', 'Feb', 'Marz', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dec'],
+      datasets: datasets
     }
+
   end
 
   def self.option_bar(plan)
@@ -43,7 +36,7 @@ class Chart
             mode: 'nearest',
             intersect: true
         },
-        width: 650,
+        width: 600,
         scales: {
             xAxes: [{
                 display: true,
@@ -98,7 +91,7 @@ class Chart
             mode: 'nearest',
             intersect: true
         },
-        width: 650,
+        width: 600,
         scales: {
             xAxes: [{
                 display: true,
