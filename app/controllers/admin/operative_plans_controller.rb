@@ -24,26 +24,6 @@ module Admin
     def poa
       @plan = OperativePlan.find params[:operative_plan_id]
 
-      @data3={
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [{
-            label: "Año pasado",
-            backgroundColor: 'rgba(245, 14, 30, 0.2)',
-            borderColor: 'rgba(255,99,132,1)',
-            borderWidth: 2,
-            fill: true,
-            data: [65, 59, 80, 81, 56, 55, 40]
-        }, {
-            label: "Año actual",
-            fill: true,
-            backgroundColor:'rgba(33, 150, 243, 0.29)',
-            borderColor: '#2196f3',
-            data: [28, 48, 40, 19, 86, 27, 90],
-            borderWidth: 2
-        }]
-
-      }
-
       @data4={
         labels: ["January", "February", "March", "April", "May", "June", "July"],
         datasets: [{
@@ -64,41 +44,6 @@ module Admin
 
       }
 
-
-
-
-      @options3= {
-          responsive: true,
-          title:{
-              display:true,
-              text:' Semana a Semana'
-          },
-          tooltips: {
-              mode: 'index',
-              intersect: false,
-          },
-          hover: {
-              mode: 'nearest',
-              intersect: true
-          },
-          width: 650,
-          scales: {
-              xAxes: [{
-                  display: true,
-                  scaleLabel: {
-                      display: true,
-                      labelString: 'Dias'
-                  }
-              }],
-              yAxes: [{
-                  display: true,
-                  scaleLabel: {
-                      display: true,
-                      labelString: 'Visitas'
-                  }
-              }]
-          }
-      }
 
       @options4= {
           responsive: true,
