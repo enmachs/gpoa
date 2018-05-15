@@ -96,7 +96,7 @@ module Devise
       respond_to do |format|
         format.all { head :no_content }
         format.any(*navigational_formats) do
-          redirect_to after_sign_out_path_for(resource_name)
+          redirect_to new_user_session_path
         end
       end
     end

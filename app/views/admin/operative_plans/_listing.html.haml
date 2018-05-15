@@ -10,7 +10,7 @@
     %td.hidden-xs
       = link_to admin_operative_plan_path(operative_plan, search: @query), remote: true, class: 'show-row' do
         %span
-          = operative_plan.objective
+          = operative_plan.program
     %td{ style: 'width: 15px;padding-right:15px;' }
       %a.action-btn.pull-right{:id => "menu-#{operative_plan.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
         %i.icon-options-vertical

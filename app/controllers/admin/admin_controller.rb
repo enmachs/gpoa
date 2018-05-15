@@ -10,7 +10,7 @@ module Admin
 
     def root
       if current_user
-        redirect_to admin_users_path
+        redirect_to admin_operative_plans_path
       else
         redirect_to new_user_session_path
       end

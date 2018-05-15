@@ -9,7 +9,7 @@ module Admin
     def index
       @q = OperativePlan.ransack(params[:q])
       operative_plans = @q.result(distinct: true)
-      @objects = operative_plans.page(@current_page).order(position: :desc)
+      @objects = operative_plans.page(@current_page).order(position: :asc)
       @total = operative_plans.size
       @operative_plans = @objects.order(:position)
       if !@objects.first_page? && @objects.size.zero?
